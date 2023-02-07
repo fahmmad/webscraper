@@ -39,7 +39,9 @@ class Parser
             if(count($h2)>0 && $h2[0]->nodeValue == "Annual Subscription Packages") {
                 
                 $nodes = $this->xpath->query('.//div[@class="pricing-table"]//div', $sub);
-                $pricingTable = $nodes[0];
+                if($nodes) {
+                    $pricingTable = $nodes[0];
+                }
                 break;
             }
         }
