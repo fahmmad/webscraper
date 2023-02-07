@@ -10,7 +10,7 @@
 - Open the terminal or command prompt
 - run `php src/scrape.php`
 
-## Running the app
+## Testing the app
 
 - Open the terminal or command prompt
 - run `vendor/bin/phpunit ./tests/ScraperTest.php`
