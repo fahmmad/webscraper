@@ -1,0 +1,14 @@
+{
+    "name": "faisal/scraper",
+    "autoload": {
+        "psr-4": {
+            "Scraper\\": "src/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^7.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
