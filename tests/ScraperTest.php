@@ -1,6 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
-require_once dirname(__FILE__) . '/../classes/Parser.php';
+require dirname(__FILE__) . '/../autoload.php';
+
 use Classes\Parser;
 
 // suppress any warnings
@@ -95,9 +96,11 @@ class ScraperTest extends TestCase
         $parser = new Parser();
         $parser->load('https://wltest.dns-systems.net/');
         $products = json_decode($parser->getProducts(), true);
-        $price = 1000000000;
+        $this->assertGreaterThan(0, count($products));
+
+        $price = $products[0]["price"];
         foreach($products as $product) {
-            $this->assertGreaterThan($product["price"], $price);
+            $this->assertGreaterThanOrEqual($product["price"], $price);
             $price = $product["price"];
         }
     }
