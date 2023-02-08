@@ -58,7 +58,6 @@ class Parser
         }
 
         foreach($pricingTable->childNodes as $child) {
-            $product = [];
             if ($child->nodeType == XML_ELEMENT_NODE) {
                 $products[] = $this->readProduct($child);
             }
