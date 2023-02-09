@@ -12,7 +12,7 @@ class Parser
             $response = $httpClient->get($url);
             $html = (string) $response->getBody();
         } catch(ConnectException $exception) {
-            throw new \Exception("Failed get url content");
+            throw new \Exception("Failed to get url content");
         }
         
         $this->xpath = $this->xPath($html);
@@ -36,7 +36,7 @@ class Parser
         $subNodes = $this->xpath->query('//*[@id="subscriptions"]//div');
         foreach($subNodes as $sub) {
             $h2 = $sub->getElementsByTagName("h2");
-            if(count($h2)>0 && $h2[0]->nodeValue == "Annual Subscription Packages") {
+            if(count($h2) > 0 && $h2[0]->nodeValue == "Annual Subscription Packages") {
                 
                 $nodes = $this->xpath->query('.//div[@class="pricing-table"]//div', $sub);
                 if($nodes) {
@@ -72,14 +72,13 @@ class Parser
     {
         $discount = $this->getPathValue('.//div[@class="package-price"]//p', $child);
         preg_match('/[0-9\.]+/', $discount, $matches);
-        $discount = (count($matches) > 0 ? $matches[0]: 0);
         
         return [
             "title" => $this->getPathValue('.//h3', $child),
             "name" => $this->getPathValue('.//div[@class="package-name"]', $child),
             "description" => $this->getPathValue('.//div[@class="package-description"]', $child),
             "price" => trim($this->getPathValue('.//div[@class="package-price"]//span', $child), '£'),
-            "discount" => $discount,
+            "discount" => (count($matches) > 0 ? $matches[0]: 0),
         ];
     }
 
