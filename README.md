@@ -13,4 +13,4 @@
 ## Testing the app
 
 - Open the terminal or command prompt
-- run `vendor/bin/phpunit ./tests/ScraperTest.php`
+- run `vendor/bin/phpunit ./tests`
