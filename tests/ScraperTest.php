@@ -1,7 +1,7 @@
 <?php
-use PHPUnit\Framework\TestCase;
 require dirname(__FILE__) . '/../autoload.php';
 
+use PHPUnit\Framework\TestCase;
 use Classes\Parser;
 
 // suppress any warnings
@@ -21,7 +21,7 @@ class ScraperTest extends TestCase
         $parser = new Parser();
         $return = null;
         try {
-        $parser->load('https://someInvalidDomain/');
+            $return = $parser->load('https://someInvalidDomain/');
         } catch(\Exception $e) {}
         $this->assertEquals(null, $return);
     }
